@@ -1,0 +1,67 @@
+.transaction{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  &__item{
+    width: 400px;
+    height: 200px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    input, select{
+      font-size: 24px;
+    }
+    .card-number{
+      display: flex;
+      gap: 10px;
+      input{
+        width: 50px;
+        height: 40px;
+      }
+    }
+    .card-info{
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      .card-name{
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        p{
+          height: fit-content;
+          margin: 0;
+        }
+        input{
+          height: 40px;
+          width: 200px;
+        }
+      }
+      .card-date{
+        display: flex;
+        flex-direction: column;
+        p{
+          margin: 0;
+        }
+        &__select{
+          display: flex;
+          gap: 10px;
+          select{
+            height: 46px;
+            width: 60px;
+          }
+        }
+      }
+    }
+  }
+  &.send-card{
+
+  }
+  &.receive-card{
+
+  }
+}

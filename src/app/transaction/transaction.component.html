@@ -1,0 +1,48 @@
+<form
+  class="transaction"
+  (ngSubmit)="sendMoney()"
+>
+  <div class="transaction__cards">
+    <div class="transaction__item">
+      <p>Карта плательщика</p>
+      <div class="card-number">
+<!--        TODO: Разобраться с динамическим выведением *ngFor троит чета-->
+        <input (input)="onInput($event, 0)" [value]="sendCardNumber[0]" maxlength="4">
+        <input (input)="onInput($event, 1)" [value]="sendCardNumber[1]" maxlength="4">
+        <input (input)="onInput($event, 2)" [value]="sendCardNumber[2]" maxlength="4">
+        <input (input)="onInput($event, 3)" [value]="sendCardNumber[3]" maxlength="4">
+      </div>
+      <div class="card-info">
+<!--        TODO: Сбор данных с полей ФИО, ДАТА, СУММА ДЕНЕГ-->
+        <div class="card-name">
+          <p>ФИО держателя</p>
+          <input>
+        </div>
+        <div class="card-date">
+          <p>Активна до</p>
+          <div class="card-date__select">
+            <select>
+              <option *ngFor="let item of dataMonth" value="{{item}}">{{item}}</option>
+            </select>
+            <select>
+              <option *ngFor="let item of dataYear" value="{{item}}">{{item}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="transaction__item">
+      <p>Карта получателя</p>
+      <div class="card-number">
+        <input (input)="onInputRec($event, 0)" [value]="receiveCardNumber[0]" maxlength="4">
+        <input (input)="onInputRec($event, 1)" [value]="receiveCardNumber[1]" maxlength="4">
+        <input (input)="onInputRec($event, 2)" [value]="receiveCardNumber[2]" maxlength="4">
+        <input (input)="onInputRec($event, 3)" [value]="receiveCardNumber[3]" maxlength="4">
+      </div>
+    </div>
+  </div>
+  <div class="send-money">
+    <input>
+    <button type="submit" (click)="receiveData()">{{'перевести'| uppercase}}</button>
+  </div>
+</form>

@@ -1,0 +1,51 @@
+/*Обнуление*/
+
+*{padding: 0; margin: 0; border: 0;}
+
+*,*:before,*:after{-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{ height: 100%; width: 100%; font-size: 100%; line-height: 1; font-size: 14px; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;}
+input,button,textarea{font-family: inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding: 0;border: 0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: text-top;}
+h1,h2,h3,h4,h5,h6{font-size: inherit; font-weight: 400;}
+/*--------------------*/
+
+/*Шрифт*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+  gap: 40px;
+  h1{
+    font-size: 36px;
+  }
+}
+.routing{
+  height: 20px;
+  display: flex;
+  gap: 10px;
+  &__item{
+    padding: 4px;
+    border: 2px solid gray;
+    line-height: 20px;
+    height: fit-content;
+    font-size: 30px;
+  }
+}
