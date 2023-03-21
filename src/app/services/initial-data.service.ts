@@ -56,7 +56,6 @@ export class InitialDataService {
     this.myForm.reset()
   }
 
-  //TODO: Обновлять компоненту при удалении
   deleteTransaction(id: number): void {
     this.transactions = this.transactions.filter(transaction => transaction.id !== id)
     localStorage.setItem('transactions', JSON.stringify(this.transactions))

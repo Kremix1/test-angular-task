@@ -1,6 +1,3 @@
-
-// TODO Разобраться с типами интерфейса
-//TODO Использую я его где-то?
 export interface TransactionInterface {
   id: number,
   sendCardNumber: string,
