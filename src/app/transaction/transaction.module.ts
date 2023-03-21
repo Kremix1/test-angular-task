@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {TransactionComponent} from "./transaction.component";
 import {TransactionRoutingModule} from "./transaction-routing.module";
 import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     TransactionRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [],

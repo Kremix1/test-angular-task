@@ -1,4 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {TransactionInterface} from "../models/transaction-interface";
+import {InitialDataService} from "../services/initial-data.service";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'history',
@@ -6,5 +9,13 @@ import {Component} from "@angular/core";
   styleUrls: ['history.component.scss'],
 })
 export class HistoryComponent {
+  constructor(
+    protected dataActions: InitialDataService,
+  ) {}
+
+  ngOnInit() {
+    this.dataActions.renderTransaction()
+  }
+
 
 }

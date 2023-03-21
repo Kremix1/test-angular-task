@@ -1,0 +1,24 @@
+<div class="history">
+  <div class="history__item">
+    <div class="history__item id">№</div>
+    <div class="history__item sendCard">Карта плательщика</div>
+    <div class="history__item receiveCard">Карта получателя</div>
+    <div class="history__item money">Сумма</div>
+    <div class="history__item date">Дата выполнения</div>
+    <div class="history__item action">Действие</div>
+  </div>
+  <div
+    class="history__item"
+    *ngFor="let item of dataActions.transactions; let i = index"
+  >
+      <div class="history__item id">{{i + 1}}</div>
+      <div class="history__item sendCard">{{item.sendCardNumber}}</div>
+      <div class="history__item receiveCard">{{item.receiveCardNumber}}</div>
+      <div class="history__item money">{{item.amountMoney}}</div>
+      <div class="history__item date">{{item.date | date: 'dd.MM.yyyy'}}</div>
+      <div class="history__item action">
+        <button (click)="dataActions.repeatTransaction((i).toString())">ПОВТОРИТЬ</button>
+        <button (click)="dataActions.deleteTransaction(item.id)">УДАЛИТЬ</button>
+      </div>
+    </div>
+</div>
