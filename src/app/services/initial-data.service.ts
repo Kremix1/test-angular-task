@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TransactionInterface} from "../models/transaction-interface";
+import {ValidateDataService} from "./validate-data.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +12,18 @@ export class InitialDataService {
   public dataMonth: number[];
   public dataYear: number[];
   constructor(
+    private validateData: ValidateDataService
   ) {
     this.myForm = new FormGroup({
       'sendCard': new FormArray([
-        new FormControl('', [Validators.required,]),
+        new FormControl('', Validators.required),
         new FormControl('', Validators.required),
         new FormControl('', Validators.required),
         new FormControl('', Validators.required),
       ]),
       'ownerName': new FormControl('', Validators.required),
-      'cardYear': new FormControl(1, Validators.required),
-      'cardMonth': new FormControl(2023, Validators.required),
+      'cardYear': new FormControl(null, Validators.required),
+      'cardMonth': new FormControl(null, Validators.required),
       'receiveCard': new FormArray([
         new FormControl('', Validators.required),
         new FormControl('', Validators.required),
@@ -39,21 +41,22 @@ export class InitialDataService {
     // @ts-ignore
     this.transactions = JSON.parse(localStorage.getItem('transactions')) || []
   }
-  //TODO: Создать отдельный сервис для валидации данных
   saveTransaction(): void {
-    let date = new Date()
-    this.transactions.push({
-      id: Math.floor(Math.random() * 10**10),
-      sendCardNumber: this.myForm.controls['sendCard'].value.join(' '),
-      receiveCardNumber: this.myForm.controls['receiveCard'].value.join(' '),
-      amountMoney: this.myForm.controls['amountMoney'].value,
-      date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`,
-      cardYear: this.myForm.controls['cardYear'].value,
-      cardMonth: this.myForm.controls['cardMonth'].value,
-      ownerName: this.myForm.controls['ownerName'].value,
-    })
-    localStorage.setItem('transactions', JSON.stringify(this.transactions))
-    this.myForm.reset()
+    if(this.validateData.validateData(this.myForm)){
+      let date = new Date()
+      this.transactions.push({
+        id: Math.floor(Math.random() * 10**10),
+        sendCardNumber: this.myForm.controls['sendCard'].value.join(' '),
+        receiveCardNumber: this.myForm.controls['receiveCard'].value.join(' '),
+        amountMoney: this.myForm.controls['amountMoney'].value,
+        date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`,
+        cardYear: this.myForm.controls['cardYear'].value,
+        cardMonth: this.myForm.controls['cardMonth'].value,
+        ownerName: this.myForm.controls['ownerName'].value,
+      })
+      localStorage.setItem('transactions', JSON.stringify(this.transactions))
+      this.myForm.reset()
+    }
   }
 
   deleteTransaction(id: number): void {

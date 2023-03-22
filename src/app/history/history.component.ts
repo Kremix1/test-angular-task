@@ -16,6 +16,4 @@ export class HistoryComponent {
   ngOnInit() {
     this.dataActions.renderTransaction()
   }
-
-
 }
